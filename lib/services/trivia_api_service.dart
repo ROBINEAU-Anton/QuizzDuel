@@ -11,45 +11,49 @@ class TriviaApiService {
   /// [amount] - Number of questions to fetch
   /// [category] - Category ID (optional)
   /// [difficulty] - Difficulty level: easy, medium, hard (optional)
+  /// [language] - Language code: 'fr' or 'en' (default: 'fr')
   Future<List<Question>> fetchQuestions({
     int amount = 10,
     int? category,
     String? difficulty,
     String? customCategoryId,
+    String language = 'fr',
   }) async {
     if (customCategoryId != null) {
       return _fetchCustomQuestions(customCategoryId, amount);
     }
 
     try {
-      // Build URL with parameters
-      final queryParams = {
-        'amount': amount.toString(),
-        'type': 'multiple', // Multiple choice questions only
-        if (category != null) 'category': category.toString(),
-        if (difficulty != null) 'difficulty': difficulty,
-      };
+      // Use English API if language is 'en', otherwise use French API
+      if (language == 'en') {
+        // English: Use Open Trivia DB
+        final queryParams = {
+          'amount': amount.toString(),
+          'type': 'multiple',
+          if (category != null) 'category': category.toString(),
+          if (difficulty != null) 'difficulty': difficulty,
+        };
 
-      final uri = Uri.parse(
-        GameConstants.triviaApiBaseUrl,
-      ).replace(queryParameters: queryParams);
+        final uri = Uri.parse(
+          GameConstants.triviaApiBaseUrl,
+        ).replace(queryParameters: queryParams);
 
-      // Make API request
-      final response = await http.get(uri);
+        final response = await http.get(uri);
 
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-
-        // Check response code from API
-        if (data['response_code'] == 0) {
-          final results = data['results'] as List;
-          return results.map((json) => Question.fromJson(json)).toList();
-        } else {
-          throw Exception('API returned error code: ${data['response_code']}');
+        if (response.statusCode == 200) {
+          final data = json.decode(response.body);
+          if (data['response_code'] == 0) {
+            final results = data['results'] as List;
+            return results.map((json) => Question.fromJson(json)).toList();
+          }
         }
-      } else {
-        throw Exception('Failed to load questions: ${response.statusCode}');
+        // If English API fails, use fallback
+        return _getFallbackQuestions();
       }
+
+      // French: Use OpenQuizzDB API (not available, use fallback)
+      // For now, return fallback French questions
+      return _getFallbackQuestions();
     } catch (e) {
       // Return fallback questions if API fails
       return _getFallbackQuestions();

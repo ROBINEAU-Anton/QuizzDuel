@@ -9,16 +9,25 @@ class AppLocalizationsFr extends AppLocalizations {
   AppLocalizationsFr([String locale = 'fr']) : super(locale);
 
   @override
-  String get appTitle => 'QuizDuel';
+  String get appTitle => 'Quiz Battle';
 
   @override
-  String get play => 'Jouer';
+  String get tagline => 'Affrontez vos amis !';
+
+  @override
+  String get newGame => 'Nouvelle Partie';
 
   @override
   String get soloMode => 'Mode Solo';
 
   @override
-  String get trainingMode => 'Mode Entraînement';
+  String get leaderboard => 'Classement';
+
+  @override
+  String get createQuiz => 'Créer un Quiz';
+
+  @override
+  String get howToPlay => 'Comment Jouer';
 
   @override
   String get settings => 'Paramètres';
@@ -27,10 +36,46 @@ class AppLocalizationsFr extends AppLocalizations {
   String get language => 'Langue';
 
   @override
-  String get createCategory => 'Créer une catégorie';
+  String get playerSetup => 'Configuration de la Partie';
 
   @override
-  String get questions => 'Questions';
+  String get playerSetupSolo => 'Mode Solo';
+
+  @override
+  String get numberOfPlayers => 'Nombre de joueurs';
+
+  @override
+  String get playerNames => 'Noms des joueurs';
+
+  @override
+  String get yourNickname => 'Votre Pseudo';
+
+  @override
+  String get category => 'Catégorie';
+
+  @override
+  String get difficulty => 'Difficulté';
+
+  @override
+  String get allCategories => 'Toutes les catégories';
+
+  @override
+  String get easy => 'Facile';
+
+  @override
+  String get medium => 'Moyen';
+
+  @override
+  String get hard => 'Difficile';
+
+  @override
+  String get startGame => 'Commencer';
+
+  @override
+  String get question => 'Question';
+
+  @override
+  String get timeRemaining => 'Temps restant';
 
   @override
   String get score => 'Score';
@@ -39,5 +84,60 @@ class AppLocalizationsFr extends AppLocalizations {
   String get gameOver => 'Fin de partie';
 
   @override
-  String get nextQuestion => 'Question Suivante';
+  String get winner => 'Gagnant';
+
+  @override
+  String get playAgain => 'Rejouer';
+
+  @override
+  String get menu => 'Menu';
+
+  @override
+  String get accuracy => 'Précision';
+
+  @override
+  String get correctAnswers => 'Bonnes réponses';
+
+  @override
+  String get leaderboardTitle => 'Classement';
+
+  @override
+  String get noScores => 'Aucun score enregistré';
+
+  @override
+  String get players => 'joueurs';
+
+  @override
+  String get allPlayers => 'Tous';
+
+  @override
+  String get date => 'Date';
+
+  @override
+  String get howToPlayTitle => 'Comment Jouer';
+
+  @override
+  String get howToPlayHotSeat => '🎮 Mode Hot Seat';
+
+  @override
+  String get howToPlayHotSeatDesc => '2 à 4 joueurs sur le même écran';
+
+  @override
+  String get howToPlayPoints => '⚡ Système de Points';
+
+  @override
+  String get howToPlayPointsDesc1 => '• 100 points par bonne réponse';
+
+  @override
+  String get howToPlayPointsDesc2 => '• Jusqu\'à 50 points bonus de rapidité';
+
+  @override
+  String get howToPlayGoal => '🎯 Objectif';
+
+  @override
+  String get howToPlayGoalDesc =>
+      'Répondez correctement et rapidement pour gagner le plus de points !';
+
+  @override
+  String get understood => 'Compris !';
 }

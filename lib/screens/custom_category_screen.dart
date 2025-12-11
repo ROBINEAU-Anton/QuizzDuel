@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:projetquizzia/l10n/gen/app_localizations.dart';
 import '../models/question.dart';
 
 class CustomCategoryScreen extends StatefulWidget {
@@ -97,11 +96,9 @@ class _CustomCategoryScreenState extends State<CustomCategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n.createCategory),
+        title: const Text('Créer un Quiz'),
         actions: [
           IconButton(icon: const Icon(Icons.save), onPressed: _saveCategory),
         ],

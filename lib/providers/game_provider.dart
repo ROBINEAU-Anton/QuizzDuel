@@ -45,6 +45,7 @@ class GameProvider extends ChangeNotifier {
     String? difficulty,
     String? customCategoryId,
     GameMode mode = GameMode.hotseat,
+    String language = 'fr',
   }) async {
     _gameState = GameState.playing;
     _gameMode = mode;
@@ -56,6 +57,7 @@ class GameProvider extends ChangeNotifier {
       category: category,
       difficulty: difficulty,
       customCategoryId: customCategoryId,
+      language: language,
     );
 
     // Start first question

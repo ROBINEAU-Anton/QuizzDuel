@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/game_provider.dart';
+import '../providers/language_provider.dart';
 import '../models/game_state.dart';
 import '../widgets/question_card.dart';
 import '../widgets/player_zone.dart';
@@ -39,11 +40,14 @@ class _GameScreenState extends State<GameScreen> {
 
   Future<void> _startGame() async {
     final gameProvider = context.read<GameProvider>();
+    final languageProvider = context.read<LanguageProvider>();
+
     await gameProvider.startGame(
       category: widget.category,
       difficulty: widget.difficulty,
       customCategoryId: widget.customCategoryId,
       mode: widget.mode,
+      language: languageProvider.currentLocale.languageCode,
     );
 
     // Start timer
@@ -91,42 +95,44 @@ class _GameScreenState extends State<GameScreen> {
               ),
             ),
             child: SafeArea(
-              child: Column(
-                children: [
-                  // Header with timer and progress
-                  Stack(
-                    alignment: Alignment.center,
+              child: SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minHeight:
+                        MediaQuery.of(context).size.height -
+                        MediaQuery.of(context).padding.top -
+                        MediaQuery.of(context).padding.bottom,
+                  ),
+                  child: Column(
                     children: [
-                      _buildHeader(gameProvider),
-                      /* Positioned(
-                        top: 0,
-                        child: ZoomControls(), // Optional placement
-                      ), */
+                      // Header with timer and progress
+                      Stack(
+                        alignment: Alignment.center,
+                        children: [_buildHeader(gameProvider)],
+                      ),
+                      const SizedBox(height: 8),
+
+                      // Question card
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: QuestionCard(
+                          question: question.question,
+                          category: question.category,
+                          difficulty: question.difficulty,
+                          questionNumber: gameProvider.currentQuestionNumber,
+                          totalQuestions: gameProvider.totalQuestions,
+                        ),
+                      ),
+                      const SizedBox(height: 16),
+
+                      // Player zones
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.5,
+                        child: _buildPlayerZones(gameProvider),
+                      ),
                     ],
                   ),
-
-                  // Padding(padding: const EdgeInsets.symmetric(horizontal: 16), child: const Align(alignment: Alignment.centerRight, child: ZoomControls())),
-                  const SizedBox(height: 8),
-
-                  // Question card
-                  Expanded(
-                    flex: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: QuestionCard(
-                        question: question.question,
-                        category: question.category,
-                        difficulty: question.difficulty,
-                        questionNumber: gameProvider.currentQuestionNumber,
-                        totalQuestions: gameProvider.totalQuestions,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-
-                  // Player zones
-                  Expanded(flex: 3, child: _buildPlayerZones(gameProvider)),
-                ],
+                ),
               ),
             ),
           ),
@@ -170,6 +176,26 @@ class _GameScreenState extends State<GameScreen> {
     final showResult = gameProvider.gameState == GameState.questionResult;
 
     // Layout based on player count
+    // Solo mode - 1 player
+    if (players.length == 1) {
+      return Center(
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 600),
+          padding: const EdgeInsets.all(8),
+          child: PlayerZone(
+            player: players[0],
+            answers: question.allAnswers,
+            onAnswerSelected: (answer) =>
+                gameProvider.submitAnswer(players[0], answer),
+            isEnabled: gameProvider.gameState == GameState.playing,
+            correctAnswer: question.correctAnswer,
+            showResult: showResult,
+          ),
+        ),
+      );
+    }
+
+    // 2 players - side by side
     if (players.length == 2) {
       return Row(
         children: [

@@ -126,64 +126,71 @@ class _PlayerZoneState extends State<PlayerZone>
   }
 
   Widget _buildAnswerButtons() {
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 8,
-        mainAxisSpacing: 8,
-        childAspectRatio: 1.5,
-      ),
-      itemCount: widget.answers.length,
-      itemBuilder: (context, index) {
-        final answer = widget.answers[index];
-        final isSelected = _selectedAnswer == answer;
-        final isCorrect = widget.showResult && answer == widget.correctAnswer;
-        final isWrong =
-            widget.showResult && isSelected && answer != widget.correctAnswer;
+    return SingleChildScrollView(
+      child: Wrap(
+        spacing: 8,
+        runSpacing: 8,
+        alignment: WrapAlignment.center,
+        children: widget.answers.map((answer) {
+          final isSelected = _selectedAnswer == answer;
+          final isCorrect = widget.showResult && answer == widget.correctAnswer;
+          final isWrong =
+              widget.showResult && isSelected && answer != widget.correctAnswer;
 
-        Color buttonColor;
-        if (widget.showResult) {
-          if (isCorrect) {
-            buttonColor = const Color(0xFF10B981); // Green
-          } else if (isWrong) {
-            buttonColor = const Color(0xFFEF4444); // Red
+          Color buttonColor;
+          if (widget.showResult) {
+            if (isCorrect) {
+              buttonColor = const Color(0xFF10B981); // Green
+            } else if (isWrong) {
+              buttonColor = const Color(0xFFEF4444); // Red
+            } else {
+              buttonColor = Colors.white12;
+            }
+          } else if (isSelected) {
+            buttonColor = widget.player.color;
           } else {
             buttonColor = Colors.white12;
           }
-        } else if (isSelected) {
-          buttonColor = widget.player.color;
-        } else {
-          buttonColor = Colors.white12;
-        }
 
-        return AnimatedScale(
-          scale: isSelected && !widget.showResult ? 0.95 : 1.0,
-          duration: const Duration(milliseconds: 100),
-          child: ElevatedButton(
-            onPressed: widget.player.hasAnswered || !widget.isEnabled
-                ? null
-                : () => _handleAnswerTap(answer),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: buttonColor,
-              disabledBackgroundColor: buttonColor,
-              foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
+          return AnimatedScale(
+            scale: isSelected && !widget.showResult ? 0.95 : 1.0,
+            duration: const Duration(milliseconds: 100),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width > 600
+                  ? 140
+                  : (MediaQuery.of(context).size.width / 2) - 40,
+              height: 60,
+              child: ElevatedButton(
+                onPressed: widget.player.hasAnswered || !widget.isEnabled
+                    ? null
+                    : () => _handleAnswerTap(answer),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: buttonColor,
+                  disabledBackgroundColor: buttonColor,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
+                ),
+                child: Text(
+                  answer,
+                  style: const TextStyle(
+                    fontSize: 11,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
-              padding: const EdgeInsets.all(8),
             ),
-            child: Text(
-              answer,
-              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        );
-      },
+          );
+        }).toList(),
+      ),
     );
   }
 }

@@ -101,14 +101,20 @@ abstract class AppLocalizations {
   /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'QuizDuel'**
+  /// **'Quiz Battle'**
   String get appTitle;
 
-  /// No description provided for @play.
+  /// No description provided for @tagline.
   ///
   /// In en, this message translates to:
-  /// **'Play'**
-  String get play;
+  /// **'Challenge your friends!'**
+  String get tagline;
+
+  /// No description provided for @newGame.
+  ///
+  /// In en, this message translates to:
+  /// **'New Game'**
+  String get newGame;
 
   /// No description provided for @soloMode.
   ///
@@ -116,11 +122,23 @@ abstract class AppLocalizations {
   /// **'Solo Mode'**
   String get soloMode;
 
-  /// No description provided for @trainingMode.
+  /// No description provided for @leaderboard.
   ///
   /// In en, this message translates to:
-  /// **'Training Mode'**
-  String get trainingMode;
+  /// **'Leaderboard'**
+  String get leaderboard;
+
+  /// No description provided for @createQuiz.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Quiz'**
+  String get createQuiz;
+
+  /// No description provided for @howToPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'How to Play'**
+  String get howToPlay;
 
   /// No description provided for @settings.
   ///
@@ -134,17 +152,89 @@ abstract class AppLocalizations {
   /// **'Language'**
   String get language;
 
-  /// No description provided for @createCategory.
+  /// No description provided for @playerSetup.
   ///
   /// In en, this message translates to:
-  /// **'Create Category'**
-  String get createCategory;
+  /// **'Game Setup'**
+  String get playerSetup;
 
-  /// No description provided for @questions.
+  /// No description provided for @playerSetupSolo.
   ///
   /// In en, this message translates to:
-  /// **'Questions'**
-  String get questions;
+  /// **'Solo Mode'**
+  String get playerSetupSolo;
+
+  /// No description provided for @numberOfPlayers.
+  ///
+  /// In en, this message translates to:
+  /// **'Number of players'**
+  String get numberOfPlayers;
+
+  /// No description provided for @playerNames.
+  ///
+  /// In en, this message translates to:
+  /// **'Player names'**
+  String get playerNames;
+
+  /// No description provided for @yourNickname.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Nickname'**
+  String get yourNickname;
+
+  /// No description provided for @category.
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get category;
+
+  /// No description provided for @difficulty.
+  ///
+  /// In en, this message translates to:
+  /// **'Difficulty'**
+  String get difficulty;
+
+  /// No description provided for @allCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'All categories'**
+  String get allCategories;
+
+  /// No description provided for @easy.
+  ///
+  /// In en, this message translates to:
+  /// **'Easy'**
+  String get easy;
+
+  /// No description provided for @medium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get medium;
+
+  /// No description provided for @hard.
+  ///
+  /// In en, this message translates to:
+  /// **'Hard'**
+  String get hard;
+
+  /// No description provided for @startGame.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get startGame;
+
+  /// No description provided for @question.
+  ///
+  /// In en, this message translates to:
+  /// **'Question'**
+  String get question;
+
+  /// No description provided for @timeRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'Time remaining'**
+  String get timeRemaining;
 
   /// No description provided for @score.
   ///
@@ -158,11 +248,119 @@ abstract class AppLocalizations {
   /// **'Game Over'**
   String get gameOver;
 
-  /// No description provided for @nextQuestion.
+  /// No description provided for @winner.
   ///
   /// In en, this message translates to:
-  /// **'Next Question'**
-  String get nextQuestion;
+  /// **'Winner'**
+  String get winner;
+
+  /// No description provided for @playAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Play Again'**
+  String get playAgain;
+
+  /// No description provided for @menu.
+  ///
+  /// In en, this message translates to:
+  /// **'Menu'**
+  String get menu;
+
+  /// No description provided for @accuracy.
+  ///
+  /// In en, this message translates to:
+  /// **'Accuracy'**
+  String get accuracy;
+
+  /// No description provided for @correctAnswers.
+  ///
+  /// In en, this message translates to:
+  /// **'Correct answers'**
+  String get correctAnswers;
+
+  /// No description provided for @leaderboardTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Leaderboard'**
+  String get leaderboardTitle;
+
+  /// No description provided for @noScores.
+  ///
+  /// In en, this message translates to:
+  /// **'No scores yet'**
+  String get noScores;
+
+  /// No description provided for @players.
+  ///
+  /// In en, this message translates to:
+  /// **'players'**
+  String get players;
+
+  /// No description provided for @allPlayers.
+  ///
+  /// In en, this message translates to:
+  /// **'All'**
+  String get allPlayers;
+
+  /// No description provided for @date.
+  ///
+  /// In en, this message translates to:
+  /// **'Date'**
+  String get date;
+
+  /// No description provided for @howToPlayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How to Play'**
+  String get howToPlayTitle;
+
+  /// No description provided for @howToPlayHotSeat.
+  ///
+  /// In en, this message translates to:
+  /// **'🎮 Hot Seat Mode'**
+  String get howToPlayHotSeat;
+
+  /// No description provided for @howToPlayHotSeatDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'2 to 4 players on the same screen'**
+  String get howToPlayHotSeatDesc;
+
+  /// No description provided for @howToPlayPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'⚡ Point System'**
+  String get howToPlayPoints;
+
+  /// No description provided for @howToPlayPointsDesc1.
+  ///
+  /// In en, this message translates to:
+  /// **'• 100 points per correct answer'**
+  String get howToPlayPointsDesc1;
+
+  /// No description provided for @howToPlayPointsDesc2.
+  ///
+  /// In en, this message translates to:
+  /// **'• Up to 50 speed bonus points'**
+  String get howToPlayPointsDesc2;
+
+  /// No description provided for @howToPlayGoal.
+  ///
+  /// In en, this message translates to:
+  /// **'🎯 Goal'**
+  String get howToPlayGoal;
+
+  /// No description provided for @howToPlayGoalDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer correctly and quickly to earn the most points!'**
+  String get howToPlayGoalDesc;
+
+  /// No description provided for @understood.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it!'**
+  String get understood;
 }
 
 class _AppLocalizationsDelegate
