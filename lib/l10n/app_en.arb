@@ -1,0 +1,13 @@
+{
+  "appTitle": "QuizDuel",
+  "play": "Play",
+  "soloMode": "Solo Mode",
+  "trainingMode": "Training Mode",
+  "settings": "Settings",
+  "language": "Language",
+  "createCategory": "Create Category",
+  "questions": "Questions",
+  "score": "Score",
+  "gameOver": "Game Over",
+  "nextQuestion": "Next Question"
+}
